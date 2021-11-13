@@ -136,6 +136,16 @@ try{
         res.json(result)
     })
 
+    // status put api
+    app.put('/orderedUsers/state', async(req, res)=>{
+        const state = req.body;
+        // const query = {_id:ObjectId(id)}
+        const filter = {_id:ObjectId(state.id)};
+        const updateDoc = {$set:{status:state.status}};
+        const result = await orderedCollection.updateOne(filter, updateDoc);
+        res.json(result)
+    })
+
 }
 finally{
     // client.close();   
